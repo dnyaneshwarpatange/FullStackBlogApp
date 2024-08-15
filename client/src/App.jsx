@@ -6,12 +6,14 @@ import Signup from "./pages/Signup"
 import Createpost from "./pages/Createpost"
 import Logout from "./pages/Logout"
 import Footer from "./components/Footer"
+import BlogDetail from "./pages/BlogDetail"
 export default function App() {
   return (
     <BrowserRouter>
     <Navbar/>
     
     <Routes>
+      <Route path="/blog/:id" element={<BlogDetail/>}/>
       <Route path="/" element={<Home/>}/>
       <Route path="/sign-in" element={<Signin/>}/>
       <Route path="/sign-up" element={<Signup/>}/>

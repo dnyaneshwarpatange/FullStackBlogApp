@@ -3,7 +3,7 @@ const blogData = [
       id: 1,
       title: 'Best Tourist places in India',
       image: 'https://images.pexels.com/photos/618491/pexels-photo-618491.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
-      description: 'This is the first blog post description.This is the first blog post description.This is the first blog post description.',
+      description: 'This is the first blog post description.This is the first blog post description.This is the first blog post description.This is the first blog post description.This is the first blog post description.This is the first blog post description.This is the first blog post description.This is the first blog post description.This is the first blog post description.',
     },
     {
       id: 2,

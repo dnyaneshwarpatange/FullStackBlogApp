@@ -1,6 +1,13 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 
-const BlogCard = ({title,image, description }) => {
+
+const BlogCard = ({id,title,image, description }) => {
+  const navigate = useNavigate();
+  const handleReadMore = () => {
+    navigate(`/blog/${id}`); // Redirect to detailed page with blog ID
+  };
+  const truncatedDescription = description.split(' ').slice(0, 20).join(' ') + '...';
   return (
     <div className='h-96 w-96 bg-gray-700  rounded-3xl mx-7 my-10 flex justify-center flex-col'>
       <div
@@ -9,17 +16,17 @@ const BlogCard = ({title,image, description }) => {
       </div>
 
 
-      <div className="title h-32 w-80  p-2  overflow-hidden  m-auto font-mono bg-gray-700 font-bold text-xl">
+      <div className="title h-32 w-80  p-2  overflow-hidden  m-auto  bg-gray-700 font-bold text-xl">
       {title}
       </div>
 
 
       <div className="description h-40 w-80  p-2  overflow-hidden  justify-center m-auto font-mono bg-gray-700 text-white text-xs  ">
-      {description + "..."}
+      {truncatedDescription}
       </div>
 
       <div className="more">
-        <button className='bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 h-9 w-20 my-4 rounded-2xl font-mono'>
+        <button className='bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 h-9 w-20 my-4 rounded-2xl font-mono' onClick={handleReadMore}>
           Read
         </button>
       </div>

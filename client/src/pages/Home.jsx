@@ -8,6 +8,7 @@ const Home = () => {
       {blogData.map((blog) => (
         <BlogCard
           key={blog.id}
+          id={blog.id}
           title={blog.title}
           image={blog.image}
           description={blog.description}
