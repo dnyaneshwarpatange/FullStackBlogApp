@@ -14,12 +14,12 @@ const BlogCard = ({title,image, description }) => {
       </div>
 
 
-      <div className="title h-40 w-80  p-2  overflow-hidden  justify-center m-auto font-mono bg-gray-700 text-white font-light  ">
+      <div className="description h-40 w-80  p-2  overflow-hidden  justify-center m-auto font-mono bg-gray-700 text-white text-xs  ">
       {description + "..."}
       </div>
 
       <div className="more">
-        <button className='bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 h-9 w-20 my-4 rounded-2xl'>
+        <button className='bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 h-9 w-20 my-4 rounded-2xl font-mono'>
           Read
         </button>
       </div>

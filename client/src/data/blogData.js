@@ -3,7 +3,7 @@ const blogData = [
       id: 1,
       title: 'Best Tourist places in India',
       image: 'https://images.pexels.com/photos/618491/pexels-photo-618491.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
-      description: 'This is the first blog post description.',
+      description: 'This is the first blog post description.This is the first blog post description.This is the first blog post description.',
     },
     {
       id: 2,
@@ -26,13 +26,13 @@ const blogData = [
       {
         id: 5,
         title: 'Top Tech Websites for Techy Peoples',
-        image: 'https://images.pexels.com/photos/860577/pexels-photo-860577.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
+        image: 'https://images.pexels.com/photos/574324/pexels-photo-574324.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
         description: 'This is the second blog post description.',
       },
       {
         id: 6,
         title: 'Top Tech Websites for Techy Peoples',
-        image: 'https://images.pexels.com/photos/860577/pexels-photo-860577.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
+        image: 'https://images.pexels.com/photos/57901/pexels-photo-57901.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
         description: 'This is the second blog post description.',
       },
 
