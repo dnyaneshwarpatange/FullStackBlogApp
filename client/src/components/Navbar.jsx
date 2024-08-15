@@ -1,5 +1,6 @@
 import React from 'react'
 import {NavLink} from "react-router-dom"
+import logouthandler from "../pages/Logout"
 
 const Navbar = () => {
   return (
@@ -13,7 +14,7 @@ const Navbar = () => {
                 <li  className='rounded-md px-5 text-white '><NavLink to="sign-in">Sign In</NavLink></li>
                 <li className='  rounded-md px-5 text-white  '><NavLink  to="sign-up">Sign Up</NavLink></li>
                 <li className='  rounded-md px-5 text-white  '><NavLink to="create-post">Create Post</NavLink></li>
-                <li className='  rounded-md px-5 text-white  '><NavLink to="log-out">Log Out</NavLink></li>
+                <li onClick={logouthandler} className='  rounded-md px-5 text-white  '><NavLink to="/">Log Out</NavLink></li>
             </ul>
 
         </div>
