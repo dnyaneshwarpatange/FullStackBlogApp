@@ -26,7 +26,7 @@ const BlogCard = ({id,title,image, description }) => {
       </div>
 
       <div className="more">
-        <button className='bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 h-9 w-20 my-4 rounded-2xl font-mono' onClick={handleReadMore}>
+        <button className='bg-[rgb(120,131,136)] h-9 w-20 my-4 rounded-2xl font-mono' onClick={handleReadMore}>
           Read
         </button>
       </div>

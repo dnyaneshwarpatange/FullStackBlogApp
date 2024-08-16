@@ -1,9 +1,11 @@
 require("dotenv").config();
 const express = require("express");
 const app = express();
-const mongoconnection = require("./utils/db")
+const mongoconnection = require("./utils/db");
+const router = require("./routes/authRouter");
 
 app.use(express.json());
+app.use(router);
 
 
 const PORT = process.env.PORT || 3000;
