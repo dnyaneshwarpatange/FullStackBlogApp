@@ -1,23 +1,95 @@
-import React from 'react'
+import React, { useState } from 'react';
 
-const Createpost = () => {
+const CreatePost = () => {
+  const [post, setPost] = useState({
+    image: '', // Changed from imageUrl to image
+    title: '',
+    description: '',
+  });
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setPost({
+      ...post,
+      [name]: value,
+    });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await fetch("http://localhost:3000/create", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(post),
+      });
+
+      if (response.ok) {
+        alert('Post created successfully');
+        setPost({
+          image: '', // Changed from imageUrl to image
+          title: '',
+          description: '',
+        });
+      } else {
+        alert('Failed to create post');
+      }
+    } catch (error) {
+      console.error('Error:', error);
+    }
+  };
+
   return (
-    <div className="signup bg-[rgb(99,106,109)] h-[35rem] w-[50rem] flex gap-2 m-auto my-12 rounded-xl flex-col justify-center">
-      <label className='mx-[20rem] text-center h-6 w-[10rem] rounded-md text-white px-2 bg-gray-950' htmlFor="imageurl">Enter URL of Image</label>
-      <input className='mx-[8rem] bg-white h-6 w-[30rem] rounded-md' type="text" />
+    <div className="create-post bg-[rgb(99,106,109)] h-[35rem] w-[50rem] flex gap-2 m-auto my-12 rounded-xl flex-col justify-center">
+      <form onSubmit={handleSubmit} className="flex flex-col gap-4">
+        <label className='text-center h-6 w-[10rem] rounded-md text-white px-2 bg-gray-950' htmlFor="image">
+          Enter URL of Image
+        </label>
+        <input
+          className='bg-white h-6 w-[30rem] rounded-md mx-auto'
+          type="text"
+          name="image" // Changed from imageUrl to image
+          value={post.image}
+          onChange={handleInputChange}
+          required
+        />
 
-      <label className='mx-[20rem] h-6 w-[11rem] rounded-md text-white px-2 bg-gray-950' htmlFor="title">Enter Title-min 5 char </label>
-      <input className='mx-[8rem] bg-white h-6 w-[30rem] rounded-md' type="text" />
+        <label className='text-center h-6 w-[11rem] rounded-md text-white px-2 bg-gray-950' htmlFor="title">
+          Enter Title (min 6 char)
+        </label>
+        <input
+          className='bg-white h-6 w-[30rem] rounded-md mx-auto'
+          type="text"
+          name="title"
+          value={post.title}
+          onChange={handleInputChange}
+          minLength="6"
+          required
+        />
 
+        <label className='text-center h-6 w-[15rem] rounded-md text-white px-2 bg-gray-950' htmlFor="description">
+          Enter Description (min 50 char)
+        </label>
+        <textarea
+          className='bg-white h-[20rem] w-[40rem] rounded-md mx-auto'
+          name="description"
+          value={post.description}
+          onChange={handleInputChange}
+          minLength="50"
+          required
+        />
 
-      <label className='mx-[18rem] h-6 w-[15rem] rounded-md text-white px-2 bg-gray-950' htmlFor="imageurl">Enter Description-min 50 char</label>
-      <input className='mx-[5rem] bg-white h-[20rem] w-[40rem] rounded-md' type="text" />
-
-      <button className='bg-[rgb(57,71,77)] w-[4rem] rounded-xl mx-20 text-white text-lg border-spacing'>Post</button>
-
+        <button
+          type="submit"
+          className='bg-[rgb(57,71,77)] w-[4rem] rounded-xl mx-auto text-white text-lg border-spacing'
+        >
+          Post
+        </button>
+      </form>
     </div>
-    
-  )
-}
+  );
+};
 
-export default Createpost
+export default CreatePost;

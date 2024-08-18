@@ -1,28 +1,31 @@
-// controllers/blogController.js
 const Blog = require('../models/BlogModel');
 
-// Create a new blog
 const createBlog = async (req, res) => {
     try {
         const blog = new Blog(req.body);
         await blog.save();
         res.status(201).send({ message: 'Blog created successfully', blog });
     } catch (error) {
-        console.log(error);
-        res.status(400).send({ message: 'Error creating blog', error });
+        console.error('Error creating blog:', error);
+        if (error.errors) {
+            const formattedErrors = error.errors.map(err => err.message).join(', ');
+            res.status(400).send({ message: formattedErrors });
+        } else {
+            res.status(400).send({ message: 'Error creating blog', error: error.toString() });
+        }
     }
 };
-// Get all blogs
+
 const getBlogs = async (req, res) => {
     try {
         const blogs = await Blog.find();
         res.status(200).send(blogs);
     } catch (error) {
-        res.status(500).send({ message: 'Error retrieving blogs', error });
+        console.error('Error retrieving blogs:', error);
+        res.status(500).send({ message: 'Error retrieving blogs', error: error.message });
     }
 };
 
-// Update a blog by ID
 const updateBlog = async (req, res) => {
     const blogId = req.params.id;
     try {
@@ -32,11 +35,11 @@ const updateBlog = async (req, res) => {
         }
         res.status(200).send({ message: 'Blog updated successfully', updatedBlog });
     } catch (error) {
-        res.status(400).send({ message: 'Error updating blog', error });
+        console.error('Error updating blog:', error);
+        res.status(400).send({ message: 'Error updating blog', error: error.message });
     }
 };
 
-// Delete a blog by ID
 const deleteBlog = async (req, res) => {
     const blogId = req.params.id;
     try {
@@ -46,7 +49,8 @@ const deleteBlog = async (req, res) => {
         }
         res.status(200).send({ message: 'Blog deleted successfully', deletedBlog });
     } catch (error) {
-        res.status(500).send({ message: 'Error deleting blog', error });
+        console.error('Error deleting blog:', error);
+        res.status(500).send({ message: 'Error deleting blog', error: error.message });
     }
 };
 
