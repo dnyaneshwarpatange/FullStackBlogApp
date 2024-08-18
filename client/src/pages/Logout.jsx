@@ -1,25 +1,20 @@
-import React from 'react'
+// Logout.jsx
+import React from 'react';
 import { useNavigate } from 'react-router-dom';
-
+import { useAuth } from '../context/authContext';
 
 const Logout = () => {
-  const navigate = useNavigate()
+  const { logout } = useAuth();
+  const navigate = useNavigate();
 
   const handleLogout = () => {
-    // Clear the token from localStorage or sessionStorage
-    localStorage.removeItem('token'); // or sessionStorage.removeItem('token')
-
-    // Optionally clear other user-related data
-    // localStorage.removeItem('user');
-    // sessionStorage.removeItem('user');
-
-    // Redirect to the login page or home page
-   navigate('/sign-in'); // or history.push('/home');
+    logout();
+    navigate('/sign-in');
   };
-  
-  return (
-    <div onClick={handleLogout}>Logout</div>
-  )
-}
 
-export default Logout
+  return (
+    <button onClick={handleLogout}>Logout</button>
+  );
+};
+
+export default Logout;
