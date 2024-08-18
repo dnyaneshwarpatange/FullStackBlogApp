@@ -1,7 +1,8 @@
 const express = require("express");
 const router = express.Router();
 const authControllers = require("../controllers/authControllers");
-const {signInSchema,signUpSchema} = require("../validation/authValidation")
+const {signInSchema,signUpSchema} = require("../validation/authValidation");
+const {createBlogSchema,updateBlogSchema,deleBlogSchema, deleteBlogSchema} = require("../validation/blogValidation");
 const validate = require("../middlewares/validateMiddleware");
 // const blogControllers = require("../controllers/blogControllers")
 const {createBlog,getBlogs,updateBlog,deleteBlog} = require("../controllers/blogControllers");
@@ -16,10 +17,10 @@ router.post("/sign-up",validate(signUpSchema),authControllers.register);
 router.post("/sign-in",validate(signInSchema),authControllers.login);
 
 
-router.post("/create/:id",createBlog);
+router.post("/create/:id",validate(createBlogSchema),createBlog);
 router.get("/blogs",getBlogs)
-router.put("/update/:id",updateBlog);
-router.delete("/delete/:id",deleteBlog)
+router.put("/update/:id",validate(updateBlogSchema),updateBlog);
+router.delete("/delete/:id",validate(deleteBlogSchema),deleteBlog)
 
 
 module.exports = router;

@@ -1,15 +1,23 @@
-const { request } = require("express");
 const {z} = require("zod");
 
-const signUpSchema = z.object({
-    username:z.string({required_error:"Username is required"}).trim().min(4,{message:"User shoud have minimum 4 characters"}).max(10,{message:"Maximum 10 Characters are Allowed only"}),
-    email:z.string({required_error:"email is required"}).trim().min(3,{message:"minimum 3 characters are required in the email"}).max(25,{message:"Maximum 25 characters are allowed in the email"}).email(),
-    password:string({required_error:"Password is Required"}).trim().min(4,{message:"Password must have minimum 4 characters"}).max(15,{message:"Maximum 15 characters are allowed in the password"}),
+const createBlogSchema = z.object({
+    title:z.string({required_error:"Title is reqired"}).trim().min(6,{message:"minimum 6 characters are required in title"}).max(30,{message:"maximum 30 characters are allowed in title"}),
+    image:z.string({required_error:"image url is required"}).trim().min(4,{message:"minimum 4 characters are required in url"}).max(40,{message:"maximum 40 charactres are allowed in the image url"}),
+    description:z.string({required_error:"Title is reqired"}).trim().min(50,{message:"minimum 50 characters are required in title"}).max(5000,{message:"maximum 5000 characters are allowed in title"}),
+    user:z.string({required_error:"user id is required to create blog"}).trim()
+
 })
 
-const signInSchema = z.object({
-    email:z.string({required_error:"Email is required"}).email().trim(),
-    password:z.string({required_error:"password is required"}).trim(),
+const updateBlogSchema = z.object({
+    _id:z.string({required_error:"blog id is required to update blog"}).trim(),
+    title:z.string({required_error:"Title is reqired"}).trim().min(6,{message:"minimum 6 characters are required in title"}).max(30,{message:"maximum 30 characters are allowed in title"}),
+    image:z.string({required_error:"image url is required"}).trim().min(4,{message:"minimum 4 characters are required in url"}).max(40,{message:"maximum 40 charactres are allowed in the image url"}),
+    description:z.string({required_error:"Title is reqired"}).trim().min(50,{message:"minimum 50 characters are required in title"}).max(5000,{message:"maximum 5000 characters are allowed in title"}),
+    user:z.string({required_error:"user id is required to create blog"}).trim()
+
 })
 
-module.exports = {signInSchema,signUpSchema};
+const deleteBlogSchema = z.object({
+    _id:z.string({required_error:"blog id is required to delete blog"}).trim(),
+})
+module.exports = {createBlogSchema,updateBlogSchema,deleteBlogSchema};
