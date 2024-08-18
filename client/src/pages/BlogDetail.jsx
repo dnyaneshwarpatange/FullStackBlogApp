@@ -1,19 +1,33 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import blogData from '../data/blogData'; // Adjust the path if needed
 
 const BlogDetail = () => {
   const { id } = useParams();
-  const blog = blogData.find(blog => blog.id === parseInt(id, 10));
+  const [blog, setBlog] = useState(null);
 
-  // if (!blog) {
-  //   return <div className="flex justify-center items-center h-screen text-lg">Blog not found</div>;
-  // }
+  useEffect(() => {
+    fetch('http://localhost:3000/blogs')
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        return response.json();
+      })
+      .then(data => {
+        const foundBlog = data.find(blog => blog._id === id);
+        setBlog(foundBlog);
+      })
+      .catch(error => console.error('Error fetching blog details:', error));
+  }, [id]);
+
+  if (!blog) {
+    return <div className="flex justify-center items-center h-screen text-lg">Blog not found</div>;
+  }
 
   return (
     <div className="max-w-3xl mx-auto p-6 shadow-md rounded-lg text-white">
       <div className="text-center mb-6">
-        <h2 className="text-4xl font-semibold text-whitw-800">{blog.title}</h2>
+        <h2 className="text-4xl font-semibold text-white-800">{blog.title}</h2>
       </div>
 
       <div className="flex justify-center mb-6">

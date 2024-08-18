@@ -16,15 +16,30 @@ const createBlog = async (req, res) => {
     }
 };
 
-const getBlogs = async (req, res) => {
+
+const getBlogById = async (req, res) => {
     try {
-        const blogs = await Blog.find();
-        res.status(200).send(blogs);
+      const blog = await Blog.findById(req.params.id);
+      if (!blog) {
+        return res.status(404).send({ message: 'Blog not found' });
+      }
+      res.status(200).send(blog);
     } catch (error) {
-        console.error('Error retrieving blogs:', error);
-        res.status(500).send({ message: 'Error retrieving blogs', error: error.message });
+      console.error('Error retrieving blog:', error);
+      res.status(500).send({ message: 'Error retrieving blog', error: error.message });
     }
-};
+  };
+  
+  const getBlogs = async (req, res) => {
+    try {
+      const blogs = await Blog.find();
+      res.status(200).send(blogs);
+    } catch (error) {
+      console.error('Error retrieving blogs:', error);
+      res.status(500).send({ message: 'Error retrieving blogs', error: error.message });
+    }
+  };
+  
 
 const updateBlog = async (req, res) => {
     const blogId = req.params.id;
@@ -59,4 +74,5 @@ module.exports = {
     getBlogs,
     updateBlog,
     deleteBlog,
+    getBlogById,
 };
