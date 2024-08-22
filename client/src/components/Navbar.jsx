@@ -7,8 +7,8 @@ const Navbar = () => {
   const navigate = useNavigate();
 
   const handleLogout = () => {
-    logout(); // Call logout from context
-    navigate('/sign-in'); // Redirect to sign-in page after logging out
+    logout();
+    navigate('/sign-in');
   };
 
   return (
@@ -30,13 +30,18 @@ const Navbar = () => {
                         </li>
                     </>
                 )}
-                <li className='rounded-md px-5 text-white'>
-                    <NavLink to="create-post">Create Post</NavLink>
-                </li>
                 {isLoggedIn && (
-                    <li onClick={handleLogout} className='rounded-md px-5 text-white'>
-                        <span>Log Out</span> {/* Use span or button instead of NavLink */}
-                    </li>
+                    <>
+                        <li className='rounded-md px-5 text-white'>
+                            <NavLink to="create-post">Create Post</NavLink>
+                        </li>
+                        <li className='rounded-md px-5 text-white'>
+                            <NavLink to="my-posts">My Posts</NavLink>
+                        </li>
+                        <li onClick={handleLogout} className='rounded-md px-5 text-white'>
+                            <span>Log Out</span>
+                        </li>
+                    </>
                 )}
             </ul>
         </div>

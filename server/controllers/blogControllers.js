@@ -29,6 +29,14 @@ const getBlogById = async (req, res) => {
       res.status(500).send({ message: 'Error retrieving blog', error: error.message });
     }
   };
+  const getPostbyUser = async (req, res) => {
+    try {
+        const posts = await Blog.find({ userId: req.params.userId });
+        res.status(200).send(posts);
+    } catch (error) {
+        res.status(500).send({ message: 'Error retrieving posts', error: error.message });
+    }
+};
   
   const getBlogs = async (req, res) => {
     try {
@@ -75,4 +83,5 @@ module.exports = {
     updateBlog,
     deleteBlog,
     getBlogById,
+    getPostbyUser,
 };
