@@ -5,7 +5,7 @@ const Home = () => {
   const [blogData, setBlogData] = useState([]);
 
   useEffect(() => {
-    fetch('https://blogx-dusky.vercel.appblogs')
+    fetch('https://blogx-dusky.vercel.app/blogs')
       .then(response => {
         if (!response.ok) {
           throw new Error('Network response was not ok');
