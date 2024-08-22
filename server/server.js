@@ -8,7 +8,7 @@ const cors = require("cors");
 app.use(express.json());
 
 const corsOptions = {
-    origin: ["http://localhost:5173","https://mblog-pearl.vercel.app"],
+    origin: ["http://localhost:5173","https://blogx-dusky.vercel.app"],
     method: ["GET","POST","PUT","DELETE"],
     Credential:true,
 };
