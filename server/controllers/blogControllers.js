@@ -8,7 +8,6 @@ const createBlog = async (req, res) => {
     } catch (error) {
         console.error('Error creating blog:', error);
         if (error.errors) {
-            const formattedErrors = error.errors.map(err => err.message).join(', ');
             res.status(400).send({ message: formattedErrors });
         } else {
             res.status(400).send({ message: 'Error creating blog', error: error.toString() });
@@ -29,14 +28,16 @@ const getBlogById = async (req, res) => {
       res.status(500).send({ message: 'Error retrieving blog', error: error.message });
     }
   };
+  
   const getPostbyUser = async (req, res) => {
     try {
-        const posts = await Blog.find({ userId: req.params.userId });
-        res.status(200).send(posts);
+        const posts = await Blog.find({ user: req.params.userId });
+        res.status(200).json(posts);
     } catch (error) {
-        res.status(500).send({ message: 'Error retrieving posts', error: error.message });
+        res.status(500).json({ message: 'Error retrieving posts', error: error.message });
     }
 };
+
   
   const getBlogs = async (req, res) => {
     try {

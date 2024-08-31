@@ -7,7 +7,7 @@ const MyPosts = () => {
 
     useEffect(() => {
         if (user) {
-            fetch(`https://blogx-dusky.vercel.app/api/posts/user/${user._id}`)
+            fetch(`http://localhost:3000/user/${user._id}`)
                 .then(response => {
                     if (!response.ok) {
                         throw new Error('Network response was not ok');
@@ -20,7 +20,7 @@ const MyPosts = () => {
     }, [user]);
 
     const handleDelete = (postId) => {
-        fetch(`https://blogx-dusky.vercel.app/api/posts/${postId}`, {
+        fetch(`http://localhost:3000/api/posts/${postId}`, {
             method: 'DELETE',
         })
         .then(response => {

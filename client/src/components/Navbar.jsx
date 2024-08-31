@@ -13,7 +13,7 @@ const Navbar = () => {
 
   return (
     <div className='bg-black-500 font-mono border-l-0 flex flex-row justify-between px-8 py-8 bg-[rgb(120,131,136)]'>
-        <div className="navright rounded-md px-5">
+        <div className="navright rounded-md px-5 mx-2">
             <ul className='text-white'>
                 <NavLink to="/">Home</NavLink>
             </ul>
@@ -35,9 +35,9 @@ const Navbar = () => {
                         <li className='rounded-md px-5 text-white'>
                             <NavLink to="create-post">Create Post</NavLink>
                         </li>
-                        <li className='rounded-md px-5 text-white'>
+                        {/* <li className='rounded-md px-5 text-white'>
                             <NavLink to="my-posts">My Posts</NavLink>
-                        </li>
+                        </li> */}
                         <li onClick={handleLogout} className='rounded-md px-5 text-white'>
                             <span>Log Out</span>
                         </li>

@@ -20,7 +20,7 @@ router.post("/sign-in",validate(signInSchema),authControllers.login);
 router.post("/create",validate(createBlogSchema),createBlog);
 router.get("/blogs",getBlogs);
 router.get('/blogs/:id', getBlogById);
-router.get("/user/:userId",blogControllers.getPostbyUser)
+router.get('/user/:userId', blogControllers.getPostbyUser);
 
 router.put("/update/:id",validate(updateBlogSchema),updateBlog);
 router.delete("/delete/:id",validate(deleteBlogSchema),deleteBlog)
