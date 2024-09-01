@@ -18,7 +18,7 @@ const CreatePost = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch("https://blogx-dusky.vercel.app//create", {
+      const response = await fetch("https://blogx-dusky.vercel.app/create", {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
